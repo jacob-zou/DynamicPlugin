@@ -1,0 +1,22 @@
+project.ext {
+    compileSdkVersion = 26
+    versionCode = 3
+
+    setDefaultConfig = {
+        project ->
+            project.defaultConfig {
+                applicationId "com.example.dynamicplugin"
+                minSdkVersion 15
+                targetSdkVersion 26
+                versionCode 1
+                versionName "1.0"
+                testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+                javaCompileOptions {
+                    annotationProcessorOptions {
+                        arguments = [moduleName: project.project.getName()]
+                    }
+                }
+            }
+    }
+}

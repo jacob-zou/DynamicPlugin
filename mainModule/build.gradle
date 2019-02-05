@@ -1,0 +1,36 @@
+apply from: "${rootProject.rootDir}/config.gradle"
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    project.ext.setDefaultConfig android
+
+    def localBuildToolsVersion = '23.0.2'
+    buildToolsVersion = localBuildToolsVersion
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias "${System.env.FANXING_KEY_ALIAS}"
+            keyPassword "${System.env.FANXING_KEY_ALIAS_PASSWORD}"
+//            storeFile "${System.env.FANXING_KEY_STORE}"
+            storeFile file('${System.env.FANXING_KEY_STORE}')
+            storePassword "${System.env.FANXING_KEY_STORE_PASSWORD}"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':videoModule')
+    compile project(':commonModule')
+    annotationProcessor'com.alibaba:arouter-compiler:1.1.1'
+//    testCompile 'junit:junit:4.12'
+//    androidTestCompile 'com.android.support.test:runner:0.5'
+//    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+}
