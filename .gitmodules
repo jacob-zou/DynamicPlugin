@@ -1,3 +1,0 @@
-[submodule "DynamicPluginSubModule"]
-	path = DynamicPluginSubModule
-	url = git@github.com:jacob-zou/DynamicPluginSubModule.git
